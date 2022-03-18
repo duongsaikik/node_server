@@ -98,11 +98,11 @@ const sendMail = (req, res) => {
   const adminEmail = "dinhhaiduongsoma@gmail.com";
   const adminPassword = "sotuxeeusstaossp";
   const mailHost = "smtp.gmail.com";
-  const to = req.body.email;
+ /*  const to = req.body.email;
   const subject = req.body.subject;
-  const htmlContent = req.body.htmlContent;
+  const htmlContent = req.body.htmlContent; */
   const mailPort = 25;
-
+  const { email, subject, htmlContent } = req.body;
   const transporter = nodeMailer.createTransport({
     host: mailHost,
     port: mailPort,
@@ -113,23 +113,31 @@ const sendMail = (req, res) => {
     },
     tls: {
       rejectUnauthorized: false
-  }
-  
+    }
+
   });
- 
+
   const options = {
     from: adminEmail,
-    to: to,
+    to: email,
     subject: subject,
     html: htmlContent,
   };
   console.log(options)
- 
-  transporter.sendMail(options,function(err,data){
-    if(err){
+
+  transporter.sendMail(options, function (err, data) {
+    if (err) {
       console.log(err)
-    }else
-    console.log("mail has sent")
+      res.send({
+        message: false,
+      });
+    } else {
+      res.send({
+        message: true,
+      });
+      console.log("mail has sent")
+    }
+
   })
  /*  return transporter.sendMail(options); */
 };
