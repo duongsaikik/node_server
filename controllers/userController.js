@@ -95,8 +95,8 @@ const deleteUser = (req, res) => {
 //Thiện<
 const sendMail = (req, res) => {
   //guesswhoisthis111222@gmail.com
-  const adminEmail = "guesswhoisthis111222@gmail.com";
-  const adminPassword = "guesswhoisthis";
+  const adminEmail = "dinhhaiduongsoma@gmail.com";
+  const adminPassword = "sotuxeeusstaossp";
   const mailHost = "smtp.gmail.com";
   const to = req.body.email;
   const subject = req.body.subject;
