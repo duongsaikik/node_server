@@ -124,9 +124,7 @@ const sendMail = (req, res) => {
     html: htmlContent,
   };
   console.log(options)
-  res.status(404).send({
-    message: "Chắc gửi rồi á",
-  });
+ 
   transporter.sendMail(options,function(err,data){
     if(err){
       console.log(err)
