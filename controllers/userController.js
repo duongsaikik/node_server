@@ -103,6 +103,12 @@ const sendMail = (req, res) => {
   const htmlContent = req.body.htmlContent; */
   const mailPort = 25;
   const { email, subject, htmlContent } = req.body;
+  const user = await User.find({email:email})
+  if(!user){
+    res.status(400).send({
+      message: false
+    });
+  }
   const transporter = nodeMailer.createTransport({
     host: mailHost,
     port: mailPort,
